@@ -26,5 +26,44 @@
 </div>
 
 <script src="script.js"></script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+  import { getFirestore, addDoc, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBqRb0vyKwWa4hBjbiwJ8PmpWlNr8Sb1oQ",
+    authDomain: "site-mensagens-76189.firebaseapp.com",
+    projectId: "site-mensagens-76189",
+    storageBucket: "site-mensagens-76189.firebasestorage.app",
+    messagingSenderId: "864439963515",
+    appId: "1:864439963515:web:19d8979e51b9c031a337de"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const lista = document.getElementById("lista");
+
+  onSnapshot(collection(db, "mensagens"), (snapshot) => {
+    lista.innerHTML = "";
+    snapshot.forEach((doc) => {
+      const li = document.createElement("li");
+      li.textContent = doc.data().texto;
+      lista.appendChild(li);
+    });
+  });
+
+  window.enviar = async function () {
+    const msg = document.getElementById("mensagem").value;
+
+    if (msg.trim() !== "") {
+      await addDoc(collection(db, "mensagens"), {
+        texto: msg
+      });
+      document.getElementById("mensagem").value = "";
+    }
+  };
+</script>
 </body>
 </html>
