@@ -6,6 +6,10 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <input type="text" id="mensagem" placeholder="Digite sua mensagem">
+<button onclick="enviar()">Enviar</button>
+
+<ul id="lista"></ul>
 
 <header>🎀 Alice 🎀</header>
 
@@ -54,6 +58,7 @@
     });
   });
 
+  // 🔥 ESSA LINHA É A CHAVE
   window.enviar = async function () {
     const msg = document.getElementById("mensagem").value;
 
@@ -65,5 +70,3 @@
     }
   };
 </script>
-</body>
-</html>
