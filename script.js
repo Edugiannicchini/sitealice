@@ -1,8 +1,8 @@
 function updateCountdown() {
   const countdownElement = document.getElementById("countdown");
 
-  // Data do nascimento: 23/06/2026
-  const birthDate = new Date(2026, 5, 23, 0, 0, 0);
+  // Data do nascimento: 16/06/2026
+  const birthDate = new Date(2026, 5, 16, 0, 0, 0);
   const now = new Date();
 
   const diff = birthDate - now;
